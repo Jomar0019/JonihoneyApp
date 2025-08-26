@@ -1,102 +1,80 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('Book1'),
+        Text('Image1')
+      ],
+    )),
+    Center(child: Text('Library', style: TextStyle(fontSize: 12))),
+    Center(child: Text('Search', style: TextStyle(fontSize: 12))),
+    Center(child: Text('Notifications', style: TextStyle(fontSize: 12))),
+  ];
+
+  void _onItemTappped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      appBar: AppBar(
+        title: Text('Jonihoney'),
+        actions: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, top: 10),
-            child: Text(
-              'Recently Updated',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+            padding: const EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.account_circle,
+              size: 32,
+              color: Colors.pink[200],
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: 10, // Example item count
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Number of columns
-                crossAxisSpacing: 15, // Horizontal space between items
-                mainAxisSpacing: 15, // Vertical space between items
-                childAspectRatio: 0.8,
-              ),
-              itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: Colors.pink[100],
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('Image ${index + 1}'),
-                      Text('Title ${index + 1}')
-                    ],
-
-                  ),
-                );
-              },
-            ),
-          )
         ],
+        elevation: 0,
       ),
-      bottomNavigationBar: _bottomNavBar(),
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: _bottomNavBar(context),
     );
   }
 
-  BottomNavigationBar _bottomNavBar() {
-    return BottomNavigationBar(
-      fixedColor: Colors.pink[200],
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.bookmarks),
-          label: 'Bookmarks',
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Book'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
-          label: 'Activity',
-        ),
-      ],
-    );
-  }
-
-  AppBar _appBar() {
-    return AppBar(
-      title: Text(
-        'Jonihoney',
-        style: TextStyle(fontSize: 22, color: Colors.black),
+  Theme _bottomNavBar(BuildContext context) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
       ),
-      centerTitle: true,
-      elevation: 0,
-
-      leading: Container(alignment: Alignment.center, child: Icon(Icons.menu)),
-
-      actions: [
-        Container(
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(10),
-          width: 35,
-          height: 35,
-          decoration: BoxDecoration(
-            color: Colors.pink[300],
-            borderRadius: BorderRadius.circular(20),
+      child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            label: 'Library',
           ),
-          child: Icon(Icons.person, color: Colors.white),
-        ),
-      ],
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.pink[200],
+        onTap: _onItemTappped,
+      ),
     );
   }
 }
