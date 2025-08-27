@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jonihoney/pages/homeNav.dart';
 
+// ...existing code...
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -10,17 +13,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Center(child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Book1'),
-        Text('Image1')
-      ],
-    )),
-    Center(child: Text('Library', style: TextStyle(fontSize: 12))),
-    Center(child: Text('Search', style: TextStyle(fontSize: 12))),
-    Center(child: Text('Notifications', style: TextStyle(fontSize: 12))),
+  static final List<Widget> _widgetOptions = <Widget>[
+    Homenav(),
+    const Center(child: Text('Library', style: TextStyle(fontSize: 12))),
+    const Center(child: Text('Search', style: TextStyle(fontSize: 12))),
+    const Center(child: Text('Notifications', style: TextStyle(fontSize: 12))),
   ];
 
   void _onItemTappped(int index) {
@@ -33,21 +30,27 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Jonihoney'),
+        // title: SvgPicture.asset('assets/icons/jhoney.svg', height: 60),
+        title: Text('Jonihoney', style: TextStyle(color: Colors.purple[200], fontWeight: FontWeight.bold),),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: Icon(
               Icons.account_circle,
               size: 32,
-              color: Colors.pink[200],
+              color: Colors.purple[200],
             ),
           ),
         ],
         elevation: 0,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: _bottomNavBar(context),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.grey, width: .5)),
+        ),
+        child: _bottomNavBar(context),
+      ),
     );
   }
 
@@ -72,7 +75,7 @@ class _HomeState extends State<Home> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pink[200],
+        selectedItemColor: Colors.pink[300],
         onTap: _onItemTappped,
       ),
     );
