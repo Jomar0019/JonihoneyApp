@@ -31,14 +31,14 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         // title: SvgPicture.asset('assets/icons/jhoney.svg', height: 60),
-        title: Text('Jonihoney', style: TextStyle(color: Colors.purple[200], fontWeight: FontWeight.bold),),
+        title: Text('Jonihoney', style: TextStyle(color: Color(0xff624b81), fontWeight: FontWeight.bold),),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: Icon(
               Icons.account_circle,
               size: 32,
-              color: Colors.purple[200],
+              color: Color(0xff624b81),
             ),
           ),
         ],
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pink[300],
+        selectedItemColor: Color(0xff624b81),
         onTap: _onItemTappped,
       ),
     );

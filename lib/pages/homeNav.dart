@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:jonihoney/models/books.dart';
+import 'package:jonihoney/pages/bookDetail.dart';
 
 class Homenav extends StatefulWidget {
   const Homenav({super.key});
@@ -25,52 +26,192 @@ class _HomenavState extends State<Homenav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 20, top: 10),
-            child: Text(
-              'Recently Updated',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(height: 10),
-          SizedBox(
-            height: 220,
-            child: ListView.separated(
-              itemCount: books.length,
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: 20, right: 20),
-              separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  width: 110,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          books[index].imagePath,
-                          fit: BoxFit.cover,
-                          width: 120,
-                          height: 180,
-                        ),
-                      ),
-                      SizedBox(height: 6),
-                      Expanded( child: Text(
-                        books[index].title,
-                        textAlign: TextAlign.center,
-                        style : TextStyle(fontSize: 12),
-                      )),
-                    ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Recently Updated
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, top: 10),
+                  child: Text(
+                    'Recently Updated',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                );
-              },
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 220,
+                  child: ListView.separated(
+                    itemCount: books.length - 6,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final book = books[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookDetail(book: book),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                books[index].imagePath,
+                                fit: BoxFit.cover,
+                                width: 120,
+                                height: 180,
+                              ),
+                            ),
+                            SizedBox(height: 6),
+                            Expanded(
+                              child: Text(
+                                books[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+
+            // Most Popular
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, top: 10),
+                  child: Text(
+                    'Most Popular',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 220,
+                  child: ListView.separated(
+                    itemCount: books.length - 4,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final book = books[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookDetail(book: book),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                books[index].imagePath,
+                                fit: BoxFit.cover,
+                                width: 120,
+                                height: 180,
+                              ),
+                            ),
+                            SizedBox(height: 6),
+                            Expanded(
+                              child: Text(
+                                books[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            // Series
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, top: 10),
+                  child: Text(
+                    'Series',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 220,
+                  child: ListView.separated(
+                    itemCount: books.length - 3,
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    itemBuilder: (context, index) {
+                      final book = books[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookDetail(book: book),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                books[index].imagePath,
+                                fit: BoxFit.cover,
+                                width: 120,
+                                height: 180,
+                              ),
+                            ),
+                            SizedBox(height: 6),
+                            Expanded(
+                              child: Text(
+                                books[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 50),
+          ],
+        ),
       ),
     );
   }
