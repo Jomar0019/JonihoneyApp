@@ -43,6 +43,8 @@ class _HomeState extends State<Home> {
           ),
         ],
         elevation: 0,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(

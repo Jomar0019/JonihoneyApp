@@ -25,193 +25,191 @@ class _HomenavState extends State<Homenav> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Recently Updated
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20, top: 10),
-                  child: Text(
-                    'Recently Updated',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // Recently Updated
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Text(
+                  'Recently Updated',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
-                SizedBox(
-                  height: 220,
-                  child: ListView.separated(
-                    itemCount: books.length - 6,
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 10),
-                    itemBuilder: (context, index) {
-                      final book = books[index];
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BookDetail(book: book),
+              ),
+              SizedBox(height: 10),
+              SizedBox(
+                height: 220,
+                child: ListView.separated(
+                  itemCount: books.length - 6,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    final book = books[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookDetail(book: book),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              books[index].imagePath,
+                              fit: BoxFit.cover,
+                              width: 120,
+                              height: 180,
                             ),
-                          );
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                books[index].imagePath,
-                                fit: BoxFit.cover,
-                                width: 120,
-                                height: 180,
-                              ),
+                          ),
+                          SizedBox(height: 6),
+                          Expanded(
+                            child: Text(
+                              books[index].title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12),
                             ),
-                            SizedBox(height: 6),
-                            Expanded(
-                              child: Text(
-                                books[index].title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
 
-            // Most Popular
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20, top: 10),
-                  child: Text(
-                    'Most Popular',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+          // Most Popular
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Text(
+                  'Most Popular',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
-                SizedBox(
-                  height: 220,
-                  child: ListView.separated(
-                    itemCount: books.length - 4,
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 10),
-                    itemBuilder: (context, index) {
-                      final book = books[index];
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BookDetail(book: book),
+              ),
+              SizedBox(height: 10),
+              SizedBox(
+                height: 220,
+                child: ListView.separated(
+                  itemCount: books.length - 4,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    final book = books[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookDetail(book: book),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              books[index].imagePath,
+                              fit: BoxFit.cover,
+                              width: 120,
+                              height: 180,
                             ),
-                          );
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                books[index].imagePath,
-                                fit: BoxFit.cover,
-                                width: 120,
-                                height: 180,
-                              ),
+                          ),
+                          SizedBox(height: 6),
+                          Expanded(
+                            child: Text(
+                              books[index].title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12),
                             ),
-                            SizedBox(height: 6),
-                            Expanded(
-                              child: Text(
-                                books[index].title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
 
-            // Series
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20, top: 10),
-                  child: Text(
-                    'Series',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+          // Series
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Text(
+                  'Series',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
-                SizedBox(
-                  height: 220,
-                  child: ListView.separated(
-                    itemCount: books.length - 3,
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 10),
-                    itemBuilder: (context, index) {
-                      final book = books[index];
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BookDetail(book: book),
+              ),
+              SizedBox(height: 10),
+              SizedBox(
+                height: 220,
+                child: ListView.separated(
+                  itemCount: books.length - 3,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    final book = books[index];
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookDetail(book: book),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              books[index].imagePath,
+                              fit: BoxFit.cover,
+                              width: 120,
+                              height: 180,
                             ),
-                          );
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                books[index].imagePath,
-                                fit: BoxFit.cover,
-                                width: 120,
-                                height: 180,
-                              ),
+                          ),
+                          SizedBox(height: 6),
+                          Expanded(
+                            child: Text(
+                              books[index].title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12),
                             ),
-                            SizedBox(height: 6),
-                            Expanded(
-                              child: Text(
-                                books[index].title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
 
-            SizedBox(height: 50),
-          ],
-        ),
+          SizedBox(height: 50),
+        ],
       ),
     );
   }

@@ -22,6 +22,9 @@ class BookDetail extends StatelessWidget {
             child: IconButton(onPressed: () {}, icon: Icon(Icons.ios_share)),
           ),
         ],
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         child: Column(
