@@ -39,9 +39,8 @@ class _HomenavState extends State<Homenav> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
               SizedBox(
-                height: 220,
+                height: 200,
                 child: ListView.separated(
                   itemCount: books.length - 6,
                   scrollDirection: Axis.horizontal,
@@ -71,14 +70,6 @@ class _HomenavState extends State<Homenav> {
                               height: 180,
                             ),
                           ),
-                          SizedBox(height: 6),
-                          Expanded(
-                            child: Text(
-                              books[index].title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
                         ],
                       ),
                     );
@@ -99,9 +90,8 @@ class _HomenavState extends State<Homenav> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
               SizedBox(
-                height: 220,
+                height: 200,
                 child: ListView.separated(
                   itemCount: books.length - 4,
                   scrollDirection: Axis.horizontal,
@@ -131,14 +121,6 @@ class _HomenavState extends State<Homenav> {
                               height: 180,
                             ),
                           ),
-                          SizedBox(height: 6),
-                          Expanded(
-                            child: Text(
-                              books[index].title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
                         ],
                       ),
                     );
@@ -159,9 +141,8 @@ class _HomenavState extends State<Homenav> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
               SizedBox(
-                height: 220,
+                height: 200,
                 child: ListView.separated(
                   itemCount: books.length - 3,
                   scrollDirection: Axis.horizontal,
@@ -189,14 +170,6 @@ class _HomenavState extends State<Homenav> {
                               fit: BoxFit.cover,
                               width: 120,
                               height: 180,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Expanded(
-                            child: Text(
-                              books[index].title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12),
                             ),
                           ),
                         ],

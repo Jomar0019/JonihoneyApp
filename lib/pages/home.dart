@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jonihoney/pages/homeNav.dart';
 
 // ...existing code...
@@ -78,6 +77,9 @@ class _HomeState extends State<Home> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Color(0xff624b81),
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 12.0,
+        unselectedFontSize: 12.0,
         onTap: _onItemTappped,
       ),
     );
