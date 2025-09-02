@@ -44,6 +44,8 @@ class _StoryState extends State<Story> {
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
+              title: Text('Chapter 1', style: TextStyle(fontSize: 16),),
+              centerTitle: true,
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
@@ -58,10 +60,31 @@ class _StoryState extends State<Story> {
               surfaceTintColor: Colors.transparent,
             ),
           SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.all(30),
-              child: Text('lorem20'),
-              
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 50,
+                  left: 20,
+                  right: 20,
+                  bottom: 100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Chapter 1',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan aliquet laoreet. Vestibulum felis est, hendrerit sit amet auctor id, vulputate ac risus. Praesent lacus dolor, malesuada vel lectus eu, aliquam aliquet eros. Ut pharetra justo sit amet dictum semper. Donec augue quam, semper eget maximus eget, mattis eu libero. Quisque malesuada est ac libero viverra sagittis. Pellentesque pharetra eget arcu et lobortis. \n \n Nullam auctor sed libero vitae luctus. Praesent hendrerit neque vel nibh mattis, ut mattis arcu maximus. Cras a ipsum sagittis, convallis turpis a, pulvinar est. Integer ut posuere enim. Phasellus non tempor massa, eu pulvinar ante. Cras venenatis lacus a leo egestas, quis volutpat metus cursus. Nullam eget massa mollis, consequat mi et, iaculis quam.",
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
@@ -85,23 +108,56 @@ class _StoryState extends State<Story> {
           opacity: _barsVisible ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 200),
           child: BottomNavigationBar(
-            backgroundColor:
-                Theme.of(context).scaffoldBackgroundColor.withOpacity(0.9),
+            backgroundColor: Theme.of(
+              context,
+            ).scaffoldBackgroundColor.withOpacity(0.9),
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/home.svg', colorFilter: ColorFilter.mode(_selectedIndex == 0 ? Theme.of(context).primaryColor : Colors.grey, BlendMode.srcIn)),
+                icon: SvgPicture.asset(
+                  'assets/icons/home.svg',
+                  colorFilter: ColorFilter.mode(
+                    _selectedIndex == 0
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/search.svg', colorFilter: ColorFilter.mode(_selectedIndex == 1 ? Theme.of(context).primaryColor : Colors.grey, BlendMode.srcIn)),
+                icon: SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  colorFilter: ColorFilter.mode(
+                    _selectedIndex == 1
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'Search',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/book-open.svg', colorFilter: ColorFilter.mode(_selectedIndex == 2 ? Theme.of(context).primaryColor : Colors.grey, BlendMode.srcIn)),
+                icon: SvgPicture.asset(
+                  'assets/icons/book-open.svg',
+                  colorFilter: ColorFilter.mode(
+                    _selectedIndex == 2
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'Library',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset('assets/icons/bell.svg', colorFilter: ColorFilter.mode(_selectedIndex == 3 ? Theme.of(context).primaryColor : Colors.grey, BlendMode.srcIn)),
+                icon: SvgPicture.asset(
+                  'assets/icons/bell.svg',
+                  colorFilter: ColorFilter.mode(
+                    _selectedIndex == 3
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 label: 'Notifications',
               ),
             ],
