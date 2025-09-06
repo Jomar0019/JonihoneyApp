@@ -46,12 +46,12 @@ class BookDetail extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(book.imagePath, width: 180),
+                        child: Image.asset(book.imagePath, width: 160),
                       ),
                     ],
                   ),
                 ),
-                Text(book.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                Text(book.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +80,7 @@ class BookDetail extends StatelessWidget {
                           Text(
                             '1.2M',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -114,7 +114,7 @@ class BookDetail extends StatelessWidget {
                           Text(
                             '5.2K',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -142,7 +142,7 @@ class BookDetail extends StatelessWidget {
                           Text(
                             '32',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -163,16 +163,13 @@ class BookDetail extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff624b81),
                       foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)
-                      )
                     ),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Story(book: book)));
                     },
                     child: Text(
                       'Start Reading',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
@@ -183,7 +180,7 @@ class BookDetail extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Text(
                     book.summary,
-                    style: TextStyle(height: 1.6, fontSize: 16),
+                    style: TextStyle(height: 1.8, fontSize: 16),
                   ),
                 ),
 
