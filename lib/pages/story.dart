@@ -34,7 +34,37 @@ class _StoryState extends State<Story> {
     return Scaffold(
       backgroundColor: _isDarkMode ? Color(0xff222831) : Colors.white,
       key: _scaffoldKey,
-      drawer: Drawer(child: Center(child: Text('Item 1'))),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    itemBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 50,
+                        child: ListTile(
+                          contentPadding:
+                              EdgeInsets.zero, // Remove default padding
+                          title: Text('Chapter ${index + 1}'),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(color: Colors.white,),
+                    itemCount: 32,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           GestureDetector(
