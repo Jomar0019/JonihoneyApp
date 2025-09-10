@@ -12,14 +12,14 @@ class Story extends StatefulWidget {
 
 class _StoryState extends State<Story> {
   bool _areBarsVisible = true;
-  bool _isDarkMode = true;
-  int _selectedBackgroundIndex = 1; // 0: White, 1: Dark, 2: Sepia
+  bool _isDarkMode = false;
+  int _selectedBackgroundIndex = 0; // 0: White, 1: Dark, 2: Sepia
 
   // Define background colors
   final List<Color> _backgroundColors = [
     Colors.white, // Light
-    Color(0xff222831), // Dark
     Color(0xfff4f1e9), // Sepia
+    ?Colors.green[100],
   ];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -39,10 +39,13 @@ class _StoryState extends State<Story> {
   @override
   Widget build(BuildContext context) {
     // A list of widgets to display as the body for each tab.
-    return Scaffold(      backgroundColor: _backgroundColors[_selectedBackgroundIndex],
+    return Scaffold(
+      backgroundColor: _isDarkMode
+          ? Color(0xff31363F)
+          : _backgroundColors[_selectedBackgroundIndex],
       key: _scaffoldKey,
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: _isDarkMode ? Color(0xff31363F) : Colors.white,
         child: SafeArea(
           top: false,
           child: Padding(
@@ -58,12 +61,12 @@ class _StoryState extends State<Story> {
                         child: ListTile(
                           contentPadding:
                               EdgeInsets.zero, // Remove default padding
-                          title: Text('Chapter ${index + 1}'),
+                          title: Text('Chapter ${index + 1}', style: TextStyle(color: _isDarkMode ? Colors.white : Color(0xff31363F)),),
                         ),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(color: Colors.white),
+                       Divider(color: _isDarkMode ? Color(0xff31363F) : Colors.white),
                     itemCount: 32,
                   ),
                 ),
@@ -73,7 +76,6 @@ class _StoryState extends State<Story> {
         ),
       ),
       body: Stack(
-        
         children: [
           GestureDetector(
             onTap: _toggleBars,
@@ -86,7 +88,7 @@ class _StoryState extends State<Story> {
                     "Chapter 1",
                     style: TextStyle(
                       fontSize: 18,
-                      color: _selectedBackgroundIndex == 1 ? Colors.white : Colors.black,
+                      color: _isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                   SizedBox(height: 20),
@@ -95,7 +97,7 @@ class _StoryState extends State<Story> {
                     style: TextStyle(
                       height: 1.9,
                       fontSize: 16,
-                      color: _selectedBackgroundIndex == 1 ? Colors.white : Colors.black,
+                      color: _isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                   SizedBox(height: 100),
@@ -181,14 +183,15 @@ class _StoryState extends State<Story> {
   void _showSettingsBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.black54,
       // Use a stateful builder to update the bottom sheet's UI
       builder: (BuildContext bc) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setModalState) {
             return SizedBox(
-              height: 150,
+              height: 280,
               child: Padding(
-                padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     Row(
@@ -204,14 +207,23 @@ class _StoryState extends State<Story> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _backgroundColors[0],
                               side: _selectedBackgroundIndex == 0
-                                  ? BorderSide(width: 1, color: Color(0xff624b81))
-                                  : BorderSide(color: Colors.grey),
+                                  ? BorderSide(
+                                      width: 1,
+                                      color: Color(0xff624b81),
+                                    )
+                                  : BorderSide(color: Colors.transparent),
                             ),
-                            child: Text('T', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            child: Text(
+                              'T',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(width: 10),
-                        // Dark Background Button
+                        SizedBox(width: 8),
+                        // Sepia Background Button
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
@@ -221,14 +233,23 @@ class _StoryState extends State<Story> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _backgroundColors[1],
                               side: _selectedBackgroundIndex == 1
-                                  ? BorderSide(width: 2, color: Color(0xff624b81))
-                                  : BorderSide(color: Colors.grey),
+                                  ? BorderSide(
+                                      width: 1,
+                                      color: Color(0xff624b81),
+                                    )
+                                  : BorderSide(color: Colors.transparent),
                             ),
-                            child: Text('T', style: TextStyle(fontSize: 16, color: Colors.white)),
+                            child: Text(
+                              'T',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(width: 10),
-                        // Sepia Background Button
+                        SizedBox(width: 8),
+
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
@@ -238,10 +259,148 @@ class _StoryState extends State<Story> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _backgroundColors[2],
                               side: _selectedBackgroundIndex == 2
-                                  ? BorderSide(width: 2, color: Color(0xff624b81))
-                                  : BorderSide(color: Colors.grey),
+                                  ? BorderSide(
+                                      width: 1,
+                                      color: Color(0xff624b81),
+                                    )
+                                  : BorderSide(color: Colors.transparent),
                             ),
-                            child: Text('T', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            child: Text(
+                              'T',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                            child: Text('A-'),
+                          ),
+                        ),
+                        Expanded(child: Center(child: Text('18'))),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                            child: Text('A+'),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.format_line_spacing_rounded),
+                            label: Text(''),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Expanded(child: Center(child: Text('1'))),
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.format_line_spacing_rounded),
+                            label: Text(''),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                            
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    // Fonts
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // White Background Button
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {});
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: BorderSide(
+                                width: 1,
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            child: Text(
+                              'Open Sans',
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        // Sepia Background Button
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {});
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: BorderSide(
+                                width: 1,
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            child: Text(
+                              'Roboto',
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {});
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: BorderSide(
+                                width: 1,
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            child: Text(
+                              'Arial',
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
                           ),
                         ),
                       ],
