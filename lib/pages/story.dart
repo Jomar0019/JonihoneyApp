@@ -12,23 +12,8 @@ class Story extends StatefulWidget {
 
 class _StoryState extends State<Story> {
   bool _areBarsVisible = true;
-  bool _isDarkMode = false;
-  int _selectedBackgroundIndex = 0; // 0: White, 1: Dark, 2: Sepia
-
-  // Define background colors
-  final List<Color> _backgroundColors = [
-    Colors.white, // Light
-    Color(0xfff4f1e9), // Sepia
-    ?Colors.green[100],
-  ];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void _modeButton() {
-    setState(() {
-      _isDarkMode = !_isDarkMode;
-    });
-  }
 
   void _toggleBars() {
     setState(() {
@@ -40,16 +25,15 @@ class _StoryState extends State<Story> {
   Widget build(BuildContext context) {
     // A list of widgets to display as the body for each tab.
     return Scaffold(
-      backgroundColor: _isDarkMode
-          ? Color(0xff31363F)
-          : _backgroundColors[_selectedBackgroundIndex],
+      backgroundColor: Colors.white,
       key: _scaffoldKey,
       drawer: Drawer(
-        backgroundColor: _isDarkMode ? Color(0xff31363F) : Colors.white,
+        // Drawer background color
+        backgroundColor: Colors.white,
         child: SafeArea(
           top: false,
           child: Padding(
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -59,14 +43,16 @@ class _StoryState extends State<Story> {
                       return SizedBox(
                         height: 50,
                         child: ListTile(
-                          contentPadding:
-                              EdgeInsets.zero, // Remove default padding
-                          title: Text('Chapter ${index + 1}', style: TextStyle(color: _isDarkMode ? Colors.white : Color(0xff31363F)),),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            'Chapter ${index + 1}',
+                            style: TextStyle(color: Colors.black87),
+                          ),
                         ),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                       Divider(color: _isDarkMode ? Color(0xff31363F) : Colors.white),
+                        Divider(color: Colors.white),
                     itemCount: 32,
                   ),
                 ),
@@ -80,16 +66,13 @@ class _StoryState extends State<Story> {
           GestureDetector(
             onTap: _toggleBars,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 100),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 80),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Chapter 1",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: _isDarkMode ? Colors.white : Colors.black,
-                    ),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                   SizedBox(height: 20),
                   Text(
@@ -97,7 +80,7 @@ class _StoryState extends State<Story> {
                     style: TextStyle(
                       height: 1.9,
                       fontSize: 16,
-                      color: _isDarkMode ? Colors.white : Colors.black,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 100),
@@ -122,59 +105,41 @@ class _StoryState extends State<Story> {
       duration: Duration(milliseconds: 250),
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: Container(
-          // padding: EdgeInsets.only(bottom: 10),
-          child: BottomNavigationBar(
-            backgroundColor: _isDarkMode ? Color(0xff31363F) : Colors.white,
+        child: BottomNavigationBar(
+          backgroundColor: Colors.white,
 
-            elevation: 0,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            iconSize: 28,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.list_rounded,
-                  color: _isDarkMode ? Colors.white : Colors.black,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.settings,
-                  color: _isDarkMode ? Colors.white : Colors.black,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  _isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                  color: _isDarkMode ? Colors.white : Colors.black,
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.mode_comment_rounded,
-                  color: _isDarkMode ? Colors.white : Colors.black,
-                ),
-                label: '',
-              ),
-            ],
-            onTap: (index) {
-              if (index == 0) {
-                _scaffoldKey.currentState?.openDrawer();
-              }
-              if (index == 1) {
-                // Show bottom sheet for settings
-                _showSettingsBottomSheet(context);
-              }
-              if (index == 2) {
-                _modeButton();
-              }
-            },
-          ),
+          elevation: 0,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 28,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list_rounded, color: Colors.black),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings, color: Colors.black),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.dark_mode, color: Colors.black),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mode_comment_rounded, color: Colors.black),
+              label: '',
+            ),
+          ],
+          onTap: (index) {
+            if (index == 0) {
+              _scaffoldKey.currentState?.openDrawer();
+            }
+            if (index == 1) {
+              // Show bottom sheet for settings
+              _showSettingsBottomSheet(context);
+            }
+          },
         ),
       ),
     );
@@ -182,14 +147,13 @@ class _StoryState extends State<Story> {
 
   void _showSettingsBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      context: context,
       backgroundColor: Colors.black54,
-      // Use a stateful builder to update the bottom sheet's UI
+      context: context,
       builder: (BuildContext bc) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setModalState) {
-            return SizedBox(
-              height: 280,
+            return Container(
+              height: 230,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -197,210 +161,145 @@ class _StoryState extends State<Story> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // White Background Button
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                              setState(() => _selectedBackgroundIndex = 0);
-                              setModalState(() {});
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: _backgroundColors[0],
-                              side: _selectedBackgroundIndex == 0
-                                  ? BorderSide(
-                                      width: 1,
-                                      color: Color(0xff624b81),
-                                    )
-                                  : BorderSide(color: Colors.transparent),
+                              backgroundColor: Colors.white,
                             ),
-                            child: Text(
-                              'T',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
+                            child: Text('T'),
                           ),
                         ),
-                        SizedBox(width: 8),
-                        // Sepia Background Button
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() => _selectedBackgroundIndex = 1);
-                              setModalState(() {});
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: _backgroundColors[1],
-                              side: _selectedBackgroundIndex == 1
-                                  ? BorderSide(
-                                      width: 1,
-                                      color: Color(0xff624b81),
-                                    )
-                                  : BorderSide(color: Colors.transparent),
-                            ),
-                            child: Text(
-                              'T',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
+
                         SizedBox(width: 8),
 
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                              setState(() => _selectedBackgroundIndex = 2);
-                              setModalState(() {});
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: _backgroundColors[2],
-                              side: _selectedBackgroundIndex == 2
-                                  ? BorderSide(
-                                      width: 1,
-                                      color: Color(0xff624b81),
-                                    )
-                                  : BorderSide(color: Colors.transparent),
+                              backgroundColor: Colors.white,
                             ),
-                            child: Text(
-                              'T',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
+                            child: Text('T'),
+                          ),
+                        ),
+
+                        SizedBox(width: 8),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                            ),
+                            child: Text('T'),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 20),
+
+                    // FontSize and LineHeight
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                ),
+                                child: Text('A-'),
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16,
+                                  right: 16,
+                                ),
+                                child: Text('16'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                ),
+                                child: Text('A+'),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                ),
+                                child: (Icon(
+                                  Icons.format_line_spacing_rounded,
+                                )),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16,
+                                  right: 16,
+                                ),
+                                child: Text('16'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                ),
+                                child: Icon(Icons.format_line_spacing_rounded),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
 
-                    SizedBox(height: 16),
+                    SizedBox(height: 20),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                            child: Text('A-'),
-                          ),
-                        ),
-                        Expanded(child: Center(child: Text('18'))),
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                            child: Text('A+'),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 16),
-
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Icon(Icons.format_line_spacing_rounded),
-                            label: Text(''),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Center(child: Text('1'))),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: Icon(Icons.format_line_spacing_rounded),
-                            label: Text(''),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                            
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 16),
-
-                    // Fonts
+                    // Font Style
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // White Background Button
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              side: BorderSide(
-                                width: 1,
-                                color: Colors.transparent,
-                              ),
                             ),
-                            child: Text(
-                              'Open Sans',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
+                            child: Text('Sans'),
                           ),
                         ),
-                        SizedBox(width: 8),
-                        // Sepia Background Button
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: BorderSide(
-                                width: 1,
-                                color: Colors.transparent,
-                              ),
-                            ),
-                            child: Text(
-                              'Roboto',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
+
                         SizedBox(width: 8),
 
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              side: BorderSide(
-                                width: 1,
-                                color: Colors.transparent,
-                              ),
                             ),
-                            child: Text(
-                              'Arial',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
+                            child: Text('Comic'),
+                          ),
+                        ),
+
+                        SizedBox(width: 8),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
                             ),
+                            child: Text('Poppins'),
                           ),
                         ),
                       ],
@@ -420,14 +319,11 @@ class _StoryState extends State<Story> {
       opacity: _areBarsVisible ? 1 : 0,
       duration: const Duration(milliseconds: 250),
       child: Container(
-        color: _isDarkMode ? Color(0xff31363F) : Colors.white,
+        color: Colors.white,
         height: 80,
         child: AppBar(
           leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: _isDarkMode ? Colors.white : Color(0xff31363F),
-            ),
+            icon: Icon(Icons.arrow_back, color: Color(0xff31363F)),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -438,17 +334,11 @@ class _StoryState extends State<Story> {
               children: [
                 Text(
                   widget.book.title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: _isDarkMode ? Colors.white : Color(0xff31363F),
-                  ),
+                  style: TextStyle(fontSize: 18, color: Color(0xff31363F)),
                 ),
                 Text(
                   'Chapter 1',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: _isDarkMode ? Colors.white : Color(0xff31363F),
-                  ),
+                  style: TextStyle(fontSize: 14, color: Color(0xff31363F)),
                 ),
               ],
             ),
@@ -456,10 +346,7 @@ class _StoryState extends State<Story> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.ios_share_rounded,
-                color: _isDarkMode ? Colors.white : Color(0xff31363F),
-              ),
+              icon: Icon(Icons.ios_share_rounded, color: Color(0xff31363F)),
             ),
           ],
         ),
