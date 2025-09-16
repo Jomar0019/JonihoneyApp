@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jonihoney/pages/homeNav.dart';
+import 'package:jonihoney/pages/library.dart';
 
 // ...existing code...
 class Home extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     Homenav(),
-    const Center(child: Text('Library', style: TextStyle(fontSize: 12))),
+    Library(),
     const Center(child: Text('Search', style: TextStyle(fontSize: 12))),
     const Center(child: Text('Notifications', style: TextStyle(fontSize: 12))),
   ];

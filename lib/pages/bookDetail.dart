@@ -10,6 +10,7 @@ class BookDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -51,13 +52,16 @@ class BookDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(book.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text(
+                  book.title,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 12, right: 12),
                       child: Column(
                         children: [
                           Row(
@@ -65,7 +69,7 @@ class BookDetail extends StatelessWidget {
                               Icon(
                                 Icons.visibility,
                                 color: Colors.grey,
-                                size: 22,
+                                size: 18,
                               ),
                               SizedBox(width: 6),
                               Text(
@@ -77,10 +81,12 @@ class BookDetail extends StatelessWidget {
                               ),
                             ],
                           ),
+                          SizedBox(height: 6),
+
                           Text(
                             '1.2M',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -89,7 +95,7 @@ class BookDetail extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 12, right: 12),
                       decoration: BoxDecoration(
                         border: Border(
                           right: BorderSide(color: Colors.grey, width: 1),
@@ -100,7 +106,7 @@ class BookDetail extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.comment, color: Colors.grey, size: 22),
+                              Icon(Icons.comment, color: Colors.grey, size: 18),
                               SizedBox(width: 6),
                               Text(
                                 'Comments',
@@ -111,10 +117,12 @@ class BookDetail extends StatelessWidget {
                               ),
                             ],
                           ),
+                          SizedBox(height: 6),
+
                           Text(
                             '5.2K',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -122,13 +130,14 @@ class BookDetail extends StatelessWidget {
                         ],
                       ),
                     ),
+
                     Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 12, right: 12),
                       child: Column(
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.list, color: Colors.grey, size: 22),
+                              Icon(Icons.list, color: Colors.grey, size: 18),
                               SizedBox(width: 6),
                               Text(
                                 'Parts',
@@ -139,10 +148,11 @@ class BookDetail extends StatelessWidget {
                               ),
                             ],
                           ),
+                          SizedBox(height: 6),
                           Text(
                             '32',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -165,7 +175,12 @@ class BookDetail extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Story(book: book)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Story(book: book),
+                        ),
+                      );
                     },
                     child: Text(
                       'Start Reading',
