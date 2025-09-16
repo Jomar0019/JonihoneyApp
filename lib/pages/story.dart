@@ -36,7 +36,7 @@ class _StoryState extends State<Story> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _isDarkMode
-          ? Color(0xff101010)
+          ? Color(0xff111111)
           : _selectedBackgroundColor,
       key: _scaffoldKey,
       drawer: Drawer(
@@ -87,7 +87,9 @@ class _StoryState extends State<Story> {
                     style: TextStyle(
                       fontSize:
                           _fontSize + 2, // Make chapter title slightly larger
-                      color: _isDarkMode ? Colors.white : Color(0xff31363F),
+                      color: _isDarkMode
+                          ? Color(0xffe8e8e8)
+                          : Color(0xff31363F),
                       fontFamily: _selectedFontFamily,
                     ),
                   ),
@@ -97,7 +99,9 @@ class _StoryState extends State<Story> {
                     style: TextStyle(
                       height: _lineHeight,
                       fontSize: _fontSize,
-                      color: _isDarkMode ? Colors.white : Color(0xff31363F),
+                      color: _isDarkMode
+                          ? Color(0xffe8e8e8)
+                          : Color(0xff31363F),
                       fontFamily: _selectedFontFamily,
                     ),
                   ),
@@ -123,56 +127,60 @@ class _StoryState extends State<Story> {
       duration: Duration(milliseconds: 250),
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: BottomNavigationBar(
-          backgroundColor: _isDarkMode ? Color(0xff1f1f1f) : Colors.white,
-
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 28,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.list_rounded,
-                color: _isDarkMode ? Colors.white : Color(0xff31363F),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: _isDarkMode ? Color(0xff1f1f1f) : Colors.white,
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            iconSize: 28,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.list_rounded,
+                  color: _isDarkMode ? Colors.white : Color(0xff31363F),
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-                color: _isDarkMode ? Colors.white : Color(0xff31363F),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings_rounded,
+                  color: _isDarkMode ? Colors.white : Color(0xff31363F),
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: _isDarkMode
-                  ? Icon(Icons.light_mode_rounded, color: Colors.white)
-                  : Icon(Icons.dark_mode, color: Colors.black),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.mode_comment_rounded,
-                color: _isDarkMode ? Colors.white : Color(0xff31363F),
+              BottomNavigationBarItem(
+                icon: _isDarkMode
+                    ? Icon(Icons.light_mode_rounded, color: Colors.white)
+                    : Icon(Icons.dark_mode_rounded, color: Color(0xff31363F)),
+                label: '',
               ),
-              label: '',
-            ),
-          ],
-          onTap: (index) {
-            if (index == 0) {
-              _scaffoldKey.currentState?.openDrawer();
-            }
-            if (index == 1) {
-              // Show bottom sheet for settings
-              _showSettingsBottomSheet(context);
-            }
-
-            if (index == 2) {
-              _toggleMode();
-            }
-          },
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.mode_comment_rounded,
+                  color: _isDarkMode ? Colors.white : Color(0xff31363F),
+                ),
+                label: '',
+              ),
+            ],
+            onTap: (index) {
+              if (index == 0) {
+                _scaffoldKey.currentState?.openDrawer();
+              }
+              if (index == 1) {
+                // Show bottom sheet for settings
+                _showSettingsBottomSheet(context);
+              }
+              if (index == 2) {
+                _toggleMode();
+              }
+            },
+          ),
         ),
       ),
     );
@@ -198,11 +206,20 @@ class _StoryState extends State<Story> {
                           child: TextButton(
                             onPressed: () {
                               setState(() {
-                                _selectedBackgroundColor = Colors.grey.shade50;
+                                _selectedBackgroundColor = Colors.white;
+                              });
+                              setModalState(() {
+                                _selectedBackgroundColor = Colors.white;
                               });
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: Colors.grey.shade50,
+                              side: BorderSide(
+                                color: _selectedBackgroundColor == Colors.white
+                                    ? Color(0xff624b81)
+                                    : Colors.grey.shade50,
+                              ),
+                              splashFactory: NoSplash.splashFactory,
                             ),
 
                             child: Text(
@@ -221,11 +238,22 @@ class _StoryState extends State<Story> {
                           child: TextButton(
                             onPressed: () {
                               setState(() {
-                                _selectedBackgroundColor = Color(0xffeadbcb);
+                                _selectedBackgroundColor = Color(0xffffecd5);
+                              });
+                              setModalState(() {
+                                _selectedBackgroundColor = Color(0xffffecd5);
                               });
                             },
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xffeadbcb),
+                              backgroundColor: Color(0xffffecd5),
+                              splashFactory: NoSplash.splashFactory,
+                              side: BorderSide(
+                                color:
+                                    _selectedBackgroundColor ==
+                                        Color(0xffffecd5)
+                                    ? Color.fromARGB(255, 252, 195, 126)
+                                    : Color(0xffffecd5),
+                              ),
                             ),
                             child: Text(
                               'T',
@@ -243,11 +271,21 @@ class _StoryState extends State<Story> {
                           child: TextButton(
                             onPressed: () {
                               setState(() {
-                                _selectedBackgroundColor = Color(0xffb5d9cc);
+                                _selectedBackgroundColor = Color(0xffcad6c2);
+                              });
+                              setModalState(() {
+                                _selectedBackgroundColor = Color(0xffcad6c2);
                               });
                             },
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xffb5d9cc),
+                              backgroundColor: Color(0xffcad6c2),
+                              side:
+                                  _selectedBackgroundColor == Color(0xffcad6c2)
+                                  ? BorderSide(
+                                      color: Color.fromARGB(255, 140, 165, 124),
+                                    )
+                                  : BorderSide(color: Color(0xffcad6c2)),
+                              splashFactory: NoSplash.splashFactory,
                             ),
                             child: Text(
                               'T',
@@ -286,13 +324,13 @@ class _StoryState extends State<Story> {
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.transparent,
+                                  splashFactory: NoSplash.splashFactory,
                                 ),
                                 child: Text(
-                                  'a-',
+                                  'A-',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -306,7 +344,6 @@ class _StoryState extends State<Story> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -322,13 +359,13 @@ class _StoryState extends State<Story> {
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.transparent,
+                                  splashFactory: NoSplash.splashFactory,
                                 ),
                                 child: Text(
-                                  'a+',
+                                  'A+',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -346,64 +383,44 @@ class _StoryState extends State<Story> {
                               TextButton(
                                 onPressed: () {
                                   setState(() {
-                                    if (_lineHeight > 1.2) {
-                                      // Set a minimum line height
-                                      _lineHeight = (_lineHeight - 0.1).clamp(
-                                        1.2,
-                                        3.0,
-                                      );
-                                    }
+                                    _lineHeight = _lineHeight = 1.9;
                                   });
                                   setModalState(() {});
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   iconColor: Colors.black,
+                                  splashFactory: NoSplash.splashFactory,
                                 ),
-                                child: Row(
-                                  children: [
-                                    (Icon(Icons.format_line_spacing_rounded)),
-                                    (Icon(Icons.remove)),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 8,
-                                  right: 8,
-                                ),
-                                child: Text(
-                                  _lineHeight.toStringAsFixed(1),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: (Icon(Icons.density_small_rounded)),
                               ),
                               TextButton(
                                 onPressed: () {
                                   setState(() {
-                                    if (_lineHeight < 3.0) {
-                                      // Set a maximum line height
-                                      _lineHeight = (_lineHeight + 0.1).clamp(
-                                        1.2,
-                                        3.0,
-                                      );
-                                    }
+                                    _lineHeight = _lineHeight = 2.4;
                                   });
                                   setModalState(() {});
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.transparent,
                                   iconColor: Colors.black,
+                                  splashFactory: NoSplash.splashFactory,
                                 ),
-                                child: Row(
-                                  children: [
-                                    (Icon(Icons.format_line_spacing_rounded)),
-                                    (Icon(Icons.add)),
-                                  ],
+                                child: (Icon(Icons.density_medium_rounded)),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _lineHeight = _lineHeight = 3.0;
+                                  });
+                                  setModalState(() {});
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  iconColor: Colors.black,
+                                  splashFactory: NoSplash.splashFactory,
                                 ),
+                                child: (Icon(Icons.density_large_rounded)),
                               ),
                             ],
                           ),
@@ -430,15 +447,13 @@ class _StoryState extends State<Story> {
                               });
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: _selectedFontFamily == 'OpenSans'
-                                  ? Color(0xff624b81)
-                                  : Colors.white,
+                              backgroundColor: Colors.white,
                               foregroundColor: _selectedFontFamily == 'OpenSans'
-                                  ? Colors.white
+                                  ? Color(0xff624b81)
                                   : Colors.black,
                               side: BorderSide(
                                 color: _selectedFontFamily == 'OpenSans'
-                                    ? Colors.black
+                                    ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
                             ),
@@ -459,15 +474,13 @@ class _StoryState extends State<Story> {
                               });
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: _selectedFontFamily == 'Arial'
-                                  ? Color(0xff624b81)
-                                  : Colors.white,
+                              backgroundColor: Colors.white,
                               foregroundColor: _selectedFontFamily == 'Arial'
-                                  ? Colors.white
+                                  ? Color(0xff624b81)
                                   : Colors.black,
                               side: BorderSide(
                                 color: _selectedFontFamily == 'Arial'
-                                    ? Colors.black
+                                    ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
                             ),
@@ -488,15 +501,13 @@ class _StoryState extends State<Story> {
                               });
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: _selectedFontFamily == 'Georgia'
-                                  ? Color(0xff624b81)
-                                  : Colors.white,
+                              backgroundColor: Colors.white,
                               foregroundColor: _selectedFontFamily == 'Georgia'
-                                  ? Colors.white
+                                  ? Color(0xff624b81)
                                   : Colors.black,
                               side: BorderSide(
                                 color: _selectedFontFamily == 'Georgia'
-                                    ? Colors.black
+                                    ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
                             ),
@@ -533,6 +544,9 @@ class _StoryState extends State<Story> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
+                style: IconButton.styleFrom(
+                  splashFactory: NoSplash.splashFactory,
+                ),
               ),
 
               backgroundColor: _isDarkMode ? Color(0xff1f1f1f) : Colors.white,
