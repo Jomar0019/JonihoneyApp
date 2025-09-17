@@ -1,10 +1,12 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jonihoney/models/books.dart';
 import 'package:jonihoney/pages/bookDetail.dart';
 
 class Homenav extends StatefulWidget {
-  const Homenav({super.key});
+  Homenav({super.key});
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   State<Homenav> createState() => _HomenavState();

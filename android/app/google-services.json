@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "729517614264",
+    "project_id": "jonihoney-app",
+    "storage_bucket": "jonihoney-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729517614264:android:2a05717405d39c5a33004d",
+        "android_client_info": {
+          "package_name": "com.example.jonihoney"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwgiT-pCC2gTrv-zoCiuRSB7ru1wSZuyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
