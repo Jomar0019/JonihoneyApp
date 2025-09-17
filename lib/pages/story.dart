@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:jonihoney/models/books.dart';
+import 'package:jonihoney/models/chapters.dart';
 
 class Story extends StatefulWidget {
   final BookModel book;
+  final List<ChapterModel> allChapters;
+  final int initialChapterIndex;
 
-  const Story({super.key, required this.book});
+  const Story(
+      {super.key,
+      required this.book,
+      required this.allChapters,
+      required this.initialChapterIndex});
 
   @override
   State<Story> createState() => _StoryState();
@@ -17,6 +24,15 @@ class _StoryState extends State<Story> {
   double _fontSize = 16.0;
   double _lineHeight = 1.9;
   Color _selectedBackgroundColor = Colors.white;
+
+  late ChapterModel _currentChapter;
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the initial chapter to display
+    _currentChapter = widget.allChapters[widget.initialChapterIndex];
+  }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -51,21 +67,30 @@ class _StoryState extends State<Story> {
               children: [
                 Expanded(
                   child: ListView.separated(
+                    padding: EdgeInsets.zero,
                     itemBuilder: (BuildContext context, int index) {
+                      final chapter = widget.allChapters[index];
                       return SizedBox(
                         height: 50,
                         child: ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(
-                            'Chapter ${index + 1}',
+                            chapter.chapterTitle,
                             style: TextStyle(color: Colors.black87),
                           ),
+                          onTap: () {
+                            setState(() {
+                              _currentChapter = chapter;
+                            });
+                            // Close the drawer after selecting a chapter
+                            Navigator.pop(context);
+                          },
                         ),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
-                        Divider(color: Colors.white),
-                    itemCount: 32,
+                        const Divider(color: Colors.transparent, height: 1),
+                    itemCount: widget.allChapters.length,
                   ),
                 ),
               ],
@@ -83,7 +108,7 @@ class _StoryState extends State<Story> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Chapter 1",
+                    _currentChapter.chapterTitle,
                     style: TextStyle(
                       fontSize:
                           _fontSize + 2, // Make chapter title slightly larger
@@ -94,8 +119,7 @@ class _StoryState extends State<Story> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan aliquet laoreet. Vestibulum felis est, hendrerit sit amet auctor id, vulputate ac risus. Praesent lacus dolor, malesuada vel lectus eu, aliquam aliquet eros. Ut pharetra justo sit amet dictum semper. Donec augue quam, semper eget maximus eget, mattis eu libero. Quisque malesuada est ac libero viverra sagittis. Pellentesque pharetra eget arcu et lobortis. \n \n Nullam auctor sed libero vitae luctus. Praesent hendrerit neque vel nibh mattis, ut mattis arcu maximus. Cras a ipsum sagittis, convallis turpis a, pulvinar est. Integer ut posuere enim. Phasellus non tempor massa, eu pulvinar ante. Cras venenatis lacus a leo egestas, quis volutpat metus cursus. Nullam eget massa mollis, consequat mi et, iaculis quam. \n \n Nullam auctor sed libero vitae luctus. Praesent hendrerit neque vel nibh mattis, ut mattis arcu maximus. Cras a ipsum sagittis, convallis turpis a, pulvinar est. Integer ut posuere enim. Phasellus non tempor massa, eu pulvinar ante. Cras venenatis lacus a leo egestas, quis volutpat metus cursus. Nullam eget massa mollis, consequat mi et, iaculis quam",
+                  Text(_currentChapter.content,
                     style: TextStyle(
                       height: _lineHeight,
                       fontSize: _fontSize,
@@ -456,6 +480,7 @@ class _StoryState extends State<Story> {
                                     ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
+                              splashFactory: NoSplash.splashFactory,
                             ),
                             child: Text('System'),
                           ),
@@ -483,6 +508,7 @@ class _StoryState extends State<Story> {
                                     ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
+                              splashFactory: NoSplash.splashFactory,
                             ),
                             child: Text('Arial'),
                           ),
@@ -510,6 +536,7 @@ class _StoryState extends State<Story> {
                                     ? Color(0xff624b81)
                                     : Colors.grey.shade200,
                               ),
+                              splashFactory: NoSplash.splashFactory,
                             ),
                             child: Text('Georgia'),
                           ),
@@ -563,7 +590,7 @@ class _StoryState extends State<Story> {
                       ),
                     ),
                     Text(
-                      'Chapter 1',
+                      _currentChapter.chapterTitle,
                       style: TextStyle(
                         fontSize: 14,
                         color: _isDarkMode ? Colors.white : Color(0xff31363F),

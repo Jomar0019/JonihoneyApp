@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jonihoney/models/books.dart';
+import 'package:jonihoney/models/chapters.dart';
 import 'package:jonihoney/pages/story.dart';
 
 class BookDetail extends StatelessWidget {
@@ -175,10 +176,12 @@ class BookDetail extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
+                      final allChapters = ChapterModel.getChapter();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Story(book: book),
+                          builder: (context) =>
+                              Story(book: book, allChapters: allChapters, initialChapterIndex: 0),
                         ),
                       );
                     },

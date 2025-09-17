@@ -1,18 +1,65 @@
 class ChapterModel {
   String chapterTitle;
   String content;
+  String title;
 
 
   ChapterModel({
     required this.chapterTitle,
-    required this.content
+    required this.title,
+    required this.content,
   });
+
 
   static List<ChapterModel> getChapter() {
     List<ChapterModel> chapters = [];
 
     chapters.add(
-      ChapterModel(chapterTitle: 'Kabanata 1', content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan aliquet laoreet. Vestibulum felis est, hendrerit sit amet auctor id, vulputate ac risus. Praesent lacus dolor, malesuada vel lectus eu, aliquam aliquet eros. Ut pharetra justo sit amet dictum semper. Donec augue quam, semper eget maximus eget, mattis eu libero. Quisque malesuada est ac libero viverra sagittis. Pellentesque pharetra eget arcu et lobortis. \n \n Nullam auctor sed libero vitae luctus. Praesent hendrerit neque vel nibh mattis, ut mattis arcu maximus. Cras a ipsum sagittis, convallis turpis a, pulvinar est. Integer ut posuere enim. Phasellus non tempor massa, eu pulvinar ante. Cras venenatis lacus a leo egestas, quis volutpat metus cursus. Nullam eget massa mollis, consequat mi et, iaculis quam.")
+      ChapterModel(chapterTitle: 'Prologue', title: 'Forbidden Sin', content: """This is not a story for young readers. The language in this narrative is profane and full of harsh phrases.
+
+      This is not for you if you do not enjoy erotica. Everything in this narrative is fictional. The locations described inside are purely fictitious. It is not incest or a family stroke, so read carefully. \n
+
+      There is a happy ending in this story, and there is no cheating.
+
+      I am not going to publish a special chapter if I complete this. Let the ending be whatever the story's ending is. Comment to express your appreciation for this story! You can add me on Facebook to find out when the next update is, plus there are some teases for the following chapters.
+
+      Thank you very much, dear readers!
+
+      Publish chapter will be 10 chapters lang po. Ang kwento po na ito ay magiging libro sa halagang 299 pesos at magkakaroon ng free chapter sa dulo. Mag-comment na lamang sa mga gustong magpa-reserve sa halagang 160 pesos. Limited lamang po ang librong ito at per-batch lang din po.
+
+      Start: September 30, 2023
+      End: November 16, 2023
+
+      Written by: Jonihoney
+      Fb: Joni Malazarte
+
+      NO TO SOFTCOPIES, PLEASE!
+
+      Read and Imagine""")
+    );
+
+    chapters.add(
+      ChapterModel(chapterTitle: 'Chapter 1', title: 'Forbidden Sin', content: """This is not a story for young readers. The language in this narrative is profane and full of harsh phrases.
+
+      This is not for you if you do not enjoy erotica. Everything in this narrative is fictional. The locations described inside are purely fictitious. It is not incest or a family stroke, so read carefully. \n
+
+      There is a happy ending in this story, and there is no cheating.
+
+      I am not going to publish a special chapter if I complete this. Let the ending be whatever the story's ending is. Comment to express your appreciation for this story! You can add me on Facebook to find out when the next update is, plus there are some teases for the following chapters.
+
+      Thank you very much, dear readers!
+
+      Publish chapter will be 10 chapters lang po. Ang kwento po na ito ay magiging libro sa halagang 299 pesos at magkakaroon ng free chapter sa dulo. Mag-comment na lamang sa mga gustong magpa-reserve sa halagang 160 pesos. Limited lamang po ang librong ito at per-batch lang din po.
+
+      Start: September 30, 2023
+      End: November 16, 2023
+
+      Written by: Jonihoney
+      Fb: Joni Malazarte
+
+      NO TO SOFTCOPIES, PLEASE!
+
+      Read and Imagine""")
     );
 
 
