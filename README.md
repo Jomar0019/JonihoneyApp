@@ -1,16 +1,9 @@
-# jonihoney
+# Jonihoney Reading App
 
-A new Flutter project.
+This is a Flutter application designed for a single author to manage and promote their written works. It provides a dedicated space for the author to showcase their books, track reader engagement, and connect with their audience. The app offers a clean and intuitive user interface to make the reading journey more enjoyable and organized for fans.
 
-## Getting Started
+# Technologies Used
+Flutter: The primary framework for building a cross-platform mobile application.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Screenshots
+<img src="assets/screenshots/home.png" alt="Homepage" width="200" align="right">
