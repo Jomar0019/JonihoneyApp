@@ -6,5 +6,13 @@ This is a Flutter application designed for a single author to manage and promote
 Flutter: The primary framework for building a cross-platform mobile application.
 
 # Screenshots
+<div align="center">
 <img src="assets/screenshots/home.png" alt="Homepage" width="200">
+<img src="assets/screenshots/detail.png" alt="Homepage" width="200">
 <img src="assets/screenshots/story.png" alt="Homepage" width="200">
+<img src="assets/screenshots/darkmode.png" alt="Homepage" width="200">
+<img src="assets/screenshots/chapter_drawer.png" alt="Homepage" width="200">
+<img src="assets/screenshots/add_settings.png" alt="Homepage" width="200">
+<img src="assets/screenshots/library.png" alt="Homepage" width="200">
+<img src="assets/screenshots/search.png" alt="Homepage" width="200">
+</div>
