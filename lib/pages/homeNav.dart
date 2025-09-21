@@ -1,12 +1,10 @@
-// ignore: file_names
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jonihoney/models/books.dart';
 import 'package:jonihoney/pages/bookDetail.dart';
 
 class Homenav extends StatefulWidget {
-  Homenav({super.key});
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  const Homenav({super.key});
 
   @override
   State<Homenav> createState() => _HomenavState();
@@ -35,7 +33,7 @@ class _HomenavState extends State<Homenav> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Recently Updated',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -46,7 +44,7 @@ class _HomenavState extends State<Homenav> {
                 child: ListView.separated(
                   itemCount: books.length - 6,
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 10),
                   itemBuilder: (context, index) {
@@ -86,7 +84,7 @@ class _HomenavState extends State<Homenav> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Most Popular',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -97,7 +95,7 @@ class _HomenavState extends State<Homenav> {
                 child: ListView.separated(
                   itemCount: books.length - 4,
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 10),
                   itemBuilder: (context, index) {
@@ -137,7 +135,7 @@ class _HomenavState extends State<Homenav> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Series',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -148,7 +146,7 @@ class _HomenavState extends State<Homenav> {
                 child: ListView.separated(
                   itemCount: books.length - 3,
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(left: 10, right: 10),
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 10),
                   itemBuilder: (context, index) {

@@ -7,11 +7,12 @@ class Story extends StatefulWidget {
   final List<ChapterModel> allChapters;
   final int initialChapterIndex;
 
-  const Story(
-      {super.key,
-      required this.book,
-      required this.allChapters,
-      required this.initialChapterIndex});
+  const Story({
+    super.key,
+    required this.book,
+    required this.allChapters,
+    required this.initialChapterIndex,
+  });
 
   @override
   State<Story> createState() => _StoryState();
@@ -119,7 +120,8 @@ class _StoryState extends State<Story> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(_currentChapter.content,
+                  Text(
+                    _currentChapter.content,
                     style: TextStyle(
                       height: _lineHeight,
                       fontSize: _fontSize,
@@ -563,6 +565,7 @@ class _StoryState extends State<Story> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppBar(
+              
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
@@ -576,7 +579,10 @@ class _StoryState extends State<Story> {
                 ),
               ),
 
-              backgroundColor: _isDarkMode ? Color(0xff1f1f1f) : Colors.white,
+              backgroundColor: Colors.transparent,
+              scrolledUnderElevation: 0,
+              surfaceTintColor: Colors.transparent,
+              elevation: 0,
 
               title: Center(
                 child: Column(

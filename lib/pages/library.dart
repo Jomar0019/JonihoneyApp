@@ -31,8 +31,8 @@ class _LibraryState extends State<Library> {
       // The delegate that controls the grid's layout
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3, // Number of columns
-        crossAxisSpacing: 16.0, // Horizontal space between items
-        mainAxisSpacing: 16.0, // Vertical space between items
+        crossAxisSpacing: 8.0, // Horizontal space between items
+        mainAxisSpacing: 8.0, // Vertical space between items
         childAspectRatio: 0.6, // Adjust aspect ratio to fit content
       ),
       // The builder for each grid item
