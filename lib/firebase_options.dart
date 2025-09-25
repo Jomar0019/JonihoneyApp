@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'jonihoney-app.firebasestorage.app',
     measurementId: 'G-SCF7K69DLC',
   );
+
 }
