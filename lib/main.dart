@@ -1,9 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:jonihoney/firebase_options.dart';
+import 'package:jonihoney/services/database_service.dart';
 import 'package:jonihoney/pages/home.dart';
-
-void main() {
-  runApp(const MyApp());
-}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

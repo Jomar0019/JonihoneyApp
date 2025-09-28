@@ -36,7 +36,7 @@ class _HomenavState extends State<Homenav> {
                 padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Recently Updated',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -87,7 +87,7 @@ class _HomenavState extends State<Homenav> {
                 padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Most Popular',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -138,7 +138,7 @@ class _HomenavState extends State<Homenav> {
                 padding: EdgeInsets.only(left: 10, top: 10),
                 child: Text(
                   'Series',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
