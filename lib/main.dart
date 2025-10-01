@@ -5,6 +5,14 @@ import 'package:jonihoney/firebase_options.dart';
 import 'package:jonihoney/services/database_service.dart';
 import 'package:jonihoney/pages/home.dart';
 
+// void  main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform
+//   );
+//   runApp(const MyApp());
+// }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 

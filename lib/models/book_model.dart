@@ -1,41 +1,33 @@
-// class BookModel {
-//   final String id;
-//   final String title;
-//   final String authorId;
-//   final String authorName;
-//   final String coverImageUrl;
-//   final String summary;
-//   final String genre;
-//   final int totalReads;
-//   final double averageRating;
-//   final Timestamp createdAt;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-//   BookModel({
-//     required this.id,
-//     required this.title,
-//     required this.authorId,
-//     required this.authorName,
-//     required this.coverImageUrl,
-//     required this.summary,
-//     required this.genre,
-//     required this.totalReads,
-//     required this.averageRating,
-//     required this.createdAt,
-//   });
+class BookModel {
+  final String bookid;
+  final String booktitle;
+  final String bookcover;
+  final String booksummary;
 
-//   factory BookModel.fromSnapshot(DocumentSnapshot snapshot) {
-//     final data = snapshot.data() as Map<String, dynamic>;
-//     return BookModel(
-//       id: snapshot.id, // Get the document ID
-//       title: data['title'],
-//       authorId: data['authorId'],
-//       authorName: data['authorName'],
-//       coverImageUrl: data['coverImageUrl'],
-//       summary: data['summary'],
-//       genre: data['genre'],
-//       totalReads: data['totalReads'],
-//       averageRating: (data['averageRating'] as num).toDouble(),
-//       createdAt: data['createdAt'],
-//     );
-//   }
-// }
+  BookModel({
+    required this.bookid,
+    required this.booktitle,
+    required this.bookcover,
+    required this.booksummary,
+  });
+
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    return BookModel(
+      bookid: json['bookid'] as String,
+      booktitle: json['booktitle'] as String,
+      bookcover: json['bookcover'] as String,
+      booksummary: json['booksummary'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'bookid': bookid,
+      'booktitle': booktitle,
+      'bookcover': bookcover,
+      'booksummary': booksummary
+    };
+  }
+}

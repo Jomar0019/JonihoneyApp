@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jonihoney/models/books.dart';
 import 'package:jonihoney/models/chapters.dart';
 import 'package:jonihoney/pages/story.dart';
-
+import 'package:jonihoney/models/books.dart';
 class BookDetail extends StatelessWidget {
   final BookModel book;
 

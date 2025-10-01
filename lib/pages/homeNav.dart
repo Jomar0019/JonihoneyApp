@@ -1,7 +1,30 @@
-
 import 'package:flutter/material.dart';
-import 'package:jonihoney/models/books.dart';
+// import 'package:jonihoney/models/books.dart';
 import 'package:jonihoney/pages/bookDetail.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:jonihoney/models/book_model.dart';
+
+Future<BookModel?> getBooks(String bookid) async {
+  try {
+    DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection('books')
+        .doc(bookid)
+        .get();
+
+    if (doc.exists) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      BookModel book = BookModel.fromJson(data);
+
+      print('Book Name: ${book.booktitle}');
+      print('Book Summary: ${book.booksummary}');
+
+      return book;
+    }
+  } catch (e) {
+    print("Error getting book: ${e}");
+  }
+  return null;
+}
 
 class Homenav extends StatefulWidget {
   const Homenav({super.key});
@@ -11,17 +34,17 @@ class Homenav extends StatefulWidget {
 }
 
 class _HomenavState extends State<Homenav> {
-  List<BookModel> books = [];
+  // List<BookModel> books = [];
 
-  @override
-  void initState() {
-    super.initState();
-    _getBooks();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getBooks();
+  // }
 
-  void _getBooks() {
-    books = BookModel.getBooks();
-  }
+  // void _getBooks() {
+  //   books = BookModel.getBooks();
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BookModel {
   String title;
   String imagePath;
@@ -9,6 +11,18 @@ class BookModel {
     required this.imagePath,
     required this.summary,
   });
+
+  // Factory constructor to create a BookModel from a Firestore document
+  factory BookModel.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return BookModel(
+      // Use null-aware operators to provide default values if a field is missing
+      title: data['title'] ?? 'No Title',
+      // Assuming imagePath in Firestore is a URL. If it's an asset path, this is correct.
+      imagePath: data['imagePath'] ?? 'assets/images/placeholder.png',
+      summary: data['summary'] ?? 'No Summary Available.',
+    );
+  }
 
   static List<BookModel> getBooks() {
     List<BookModel> books = [];
